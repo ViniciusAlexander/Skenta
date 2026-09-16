@@ -75,4 +75,14 @@ public class ControlesDeVida : MonoBehaviour
         Pocoes = limiteDePocoes;
         PocoesMudaram?.Invoke(Pocoes);
     }
+        // SISTEMA DE SALVAMENTO
+
+    // Usado pelo PlayerDataManager (JSON ou PlayerPrefs) para repor a quantidade
+    // de pocoes salva. Fica clampado entre 0 e o limite, do mesmo jeito que Beber()
+    // ja respeita, para um save antigo ou editado na mao nao criar valor invalido.
+    public void DefinirPocoes(int quantidade)
+    {
+        Pocoes = Mathf.Clamp(quantidade, 0, limiteDePocoes);
+        PocoesMudaram?.Invoke(Pocoes);
+    }
 }
